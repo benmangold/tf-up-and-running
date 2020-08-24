@@ -27,7 +27,6 @@ variable "server_port" {
     default = 8080
 }
 
-
 resource "aws_launch_configuration" "example" {
     image_id = "ami-0c55b159cbfafe1f0"
     instance_type = "t2.micro"
@@ -40,7 +39,6 @@ resource "aws_launch_configuration" "example" {
     lifecycle {
         create_before_destroy = true
     }
-
 }
 
 resource "aws_lb" "example" {
@@ -102,7 +100,6 @@ resource "aws_lb_target_group" "asg" {
     }
 }
 
-
 resource "aws_autoscaling_group" "example" {
     launch_configuration = aws_launch_configuration.example.name
     vpc_zone_identifier = data.aws_subnet_ids.default.ids
@@ -150,4 +147,3 @@ output "alb_dns_name" {
     value = aws_lb.example.dns_name
     description = "The domain of teh load balancer"
 }
-

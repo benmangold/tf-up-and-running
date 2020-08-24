@@ -23,9 +23,10 @@ terraform init
 terraform apply
 cd ..
 
-# deploy autoscaling group
+# deploy autoscaling group with remote state
 cd asg
 terraform init
+terraform workspace new tf-up-and-running # switch to empty workspace
 terraform apply
 
 ```
@@ -59,3 +60,7 @@ terraform init
 terraform destroy # destroying the bucket requires the S3 console
 
 ```
+
+### mysql rds
+
+`mysql/main.tf` requires a secret `tf-up-and-running-mysql-password` set up in AWS Secrets Manager
